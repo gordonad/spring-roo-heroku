@@ -1,0 +1,26 @@
+# For Mac OSX INSTALL Heroku Toolbelt - http://devcenter.heroku.com/articles/java
+# See Spring MVC on Heroku - http://devcenter.heroku.com/articles/spring-mvc-hibernate
+
+# FOR SPRING ROO 1.2 - Spring Data JPA and Service Layer
+
+development mode --enabled true
+
+project --topLevelPackage com.gordondickens.herooku --java 6 --projectName herooku
+
+jpa setup --provider HIBERNATE --database POSTGRES
+
+entity --class ~.domain.Item --activeRecord false
+
+field string --fieldName name --sizeMin 3 --sizeMax 30 --class ~.domain.Item
+field string --fieldName description --sizeMax 255 --class ~.domain.Item
+
+repository jpa --interface ~.repository.ItemRepository --entity ~.domain.Item
+
+service --interface ~.service.ItemService --entity ~.domain.Item
+
+web mvc setup
+web mvc all --package ~.web
+
+logging setup --level DEBUG
+
+
